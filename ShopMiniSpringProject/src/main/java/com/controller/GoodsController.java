@@ -39,7 +39,7 @@ public class GoodsController {
 		mav.setViewName("main");
 		return mav;
 	}
-	@RequestMapping("/goodsRetrieve")
+	@RequestMapping("/goodsRetrieve") 
 	@ModelAttribute("goodsRetrieve") //응답데이터 키값 강제 설정
 	public GoodsDTO goodsRetrieve(String gCode) {
 		GoodsDTO goods = goods = service.goodsRetrieve(gCode);
