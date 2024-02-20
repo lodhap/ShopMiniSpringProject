@@ -19,8 +19,13 @@ $(document).ready(function() {
 	$(".deleteBtn").on("click", deleteCart);
 	$(".updateBtn").on("click", updateAmount);
 	$("#delAllCart").on("click", delAllCart);
+	$(".orderBtn").on("click", orderConfirm);
 });
 
+function orderConfirm(){
+	var num = $(this).attr("data-num");
+	location.href="loginCheck/orderConfirm?num="+num;
+}
 function delAllCart(){
 	$("form").attr("action", "loginCheck/delAllCart");
 	$("form").submit();
@@ -170,7 +175,7 @@ function updateAmount() {
 				${x.gPrice * x.gAmount}
 				</span></td>
 			<td><input type="button" value="주문"
-				onclick="order(${x.num})"></td>
+				data-num="${x.num }" class="orderBtn"></td>
 			<td class="td_default" align="center" width="30"
 				style='padding-left: 10px'>
 				<input type="button" value="삭제" class="deleteBtn"

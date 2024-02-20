@@ -46,4 +46,9 @@ public class GoodsDAO {
 	public void delAllCart(List<String> list) {
 		session.delete("cartDelAll", list);
 	}
+
+	public CartDTO cartByNum(String num) {
+		CartDTO cart = session.selectOne("cartByNum", num);
+		return cart;
+	}
 }

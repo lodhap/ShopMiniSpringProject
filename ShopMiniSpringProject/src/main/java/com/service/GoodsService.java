@@ -46,4 +46,9 @@ public class GoodsService {
 	public void delAllCart(List<String> list) {
 		dao.delAllCart(list);
 	}
+
+	public CartDTO cartByNum(String num) {
+		CartDTO cart = dao.cartByNum(num);
+		return cart;
+	}
 }

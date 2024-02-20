@@ -1,9 +1,11 @@
 package com.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +21,16 @@ import com.dto.CartDTO;
 import com.dto.GoodsDTO;
 import com.dto.MemberDTO;
 import com.service.GoodsService;
+import com.service.MemberService;
 
 @Controller
 public class GoodsController {
 
 	@Autowired
 	GoodsService service;
+	
+	@Autowired
+	MemberService mService;
 	
 	@RequestMapping("/goodsList")
 	public ModelAndView goodsList(String gCategory) {
@@ -51,7 +57,7 @@ public class GoodsController {
 	public String cartAdd(CartDTO cart, HttpSession session) {
 		MemberDTO login = (MemberDTO)session.getAttribute("login");
 		cart.setUserid(login.getUserid());
-		System.out.println(cart);
+		//System.out.println(cart);
 		session.setAttribute("mesg", cart.getgCode());
 		service.cartAdd(cart);
 		return "redirect:../goodsRetrieve?gCode="+cart.getgCode();
@@ -81,12 +87,39 @@ public class GoodsController {
 		service.cartUpdate(map);
 	}
 	
+	//배열로 파싱
+//	@RequestMapping("/loginCheck/delAllCart")
+//	public String delAllCart(String[] check) {
+//		//System.out.println(check[0] + "\t" + check[1]);
+//		List<String> list = Arrays.asList(check);
+//		service.delAllCart(list);
+//		return "redirect:../loginCheck/cartList";
+//	}
+	
+	//리스트로 파싱
 	@RequestMapping("/loginCheck/delAllCart")
-	public String delAllCart(String[] check) {
+	public String delAllCart(@RequestParam("check")ArrayList<String> list) {
 		//System.out.println(check[0] + "\t" + check[1]);
-		List<String> list = Arrays.asList(check);
 		service.delAllCart(list);
 		return "redirect:../loginCheck/cartList";
 	}
 	
+	@RequestMapping("/loginCheck/orderConfirm")
+	public String orderConfirm(String num, HttpSession session, RedirectAttributes xxx) {
+		//System.out.println(num);
+		
+		CartDTO cart = service.cartByNum(num);
+		//System.out.println(cart);
+		
+		MemberDTO login = (MemberDTO) session.getAttribute("login");
+		String userid = login.getUserid();
+		//System.out.println("유저아이디: " + userid);
+		MemberDTO member = mService.myPage(userid);
+		//System.out.println(member);
+		
+		xxx.addFlashAttribute("cart", cart);
+		xxx.addFlashAttribute("member", member);
+		
+		return "redirect:../orderConfirm";
+	}
 }
