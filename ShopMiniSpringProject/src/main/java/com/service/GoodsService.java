@@ -42,4 +42,8 @@ public class GoodsService {
 	public void cartUpdate(Map<String, String> map) {
 		dao.cartUpdate(map);
 	}
+
+	public void delAllCart(List<String> list) {
+		dao.delAllCart(list);
+	}
 }

@@ -18,7 +18,13 @@ $(document).ready(function() {
 	$("#checkAll").on("click", checkAll);
 	$(".deleteBtn").on("click", deleteCart);
 	$(".updateBtn").on("click", updateAmount);
+	$("#delAllCart").on("click", delAllCart);
 });
+
+function delAllCart(){
+	$("form").attr("action", "loginCheck/delAllCart");
+	$("form").submit();
+}
 
 function checkAll(){
 	$(".check").attr("checked", this.checked);
@@ -189,10 +195,7 @@ function updateAmount() {
 		<td align="center" colspan="5"><a class="a_black"
 			href="javascript:orderAllConfirm(myForm)"> 전체 주문하기 </a>&nbsp;&nbsp;&nbsp;&nbsp; 
 			<button onclick="orderAllConfirm(myForm)">전체 주문하기</button>
-			<a class="a_black" 
-			href="javascript:delAllCart(myForm)"> 전체 삭제하기 </a>&nbsp;&nbsp;&nbsp;&nbsp;
-			<button onclick="delAllCart(myForm)">전체 삭제하기</button>
-			<a class="a_black" href="index.jsp"> 계속 쇼핑하기 </a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<button id="delAllCart">전체 삭제하기</button>
 		</td>
 	</tr>
 	<tr>

@@ -42,4 +42,8 @@ public class GoodsDAO {
 	public void cartUpdate(Map<String, String> map) {
 		session.update("amountUpdate", map);
 	}
+
+	public void delAllCart(List<String> list) {
+		session.delete("cartDelAll", list);
+	}
 }

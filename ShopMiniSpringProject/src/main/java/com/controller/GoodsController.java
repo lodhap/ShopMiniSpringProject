@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +37,7 @@ public class GoodsController {
 		//System.out.println(list);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("goodsList", list);
-		mav.setViewName("main");
+		mav.setViewName("main"); 
 		return mav;
 	}
 	@RequestMapping("/goodsRetrieve") 
@@ -66,17 +67,26 @@ public class GoodsController {
 		return "redirect:../cartList";
 	}
 	
-	@RequestMapping(value = "/loginCheck/cartDelete")
+	@RequestMapping("/loginCheck/cartDelete")
 	@ResponseBody
 	public void cartDelte(String num) {
 		//System.out.println(num);
 		service.cartDelete(num);
 	}
 	
-	@RequestMapping(value = "/loginCheck/cartUpdate")
+	@RequestMapping("/loginCheck/cartUpdate")
 	@ResponseBody
 	public void cartUpdate(@RequestParam Map<String, String>map) {
 		//System.out.println(map);
 		service.cartUpdate(map);
 	}
+	
+	@RequestMapping("/loginCheck/delAllCart")
+	public String delAllCart(String[] check) {
+		//System.out.println(check[0] + "\t" + check[1]);
+		List<String> list = Arrays.asList(check);
+		service.delAllCart(list);
+		return "redirect:../loginCheck/cartList";
+	}
+	
 }
