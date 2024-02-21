@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,8 +21,14 @@ public class LoginController {
 	@Autowired
 	MemberService service;
 	
+	@ExceptionHandler({Exception.class})
+	public String errorPage() {
+		return "error/error";
+	}
+	
 	@RequestMapping("/login")
 	public String login(@RequestParam Map<String, String> map, Model m, HttpSession session) {
+		//int exception = 5/0;
 		MemberDTO dto = service.login(map);
 		//System.out.println("로그인" + dto);
 		String nextPage="";
