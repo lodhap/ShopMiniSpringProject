@@ -21,14 +21,14 @@ public class LoginController {
 	@Autowired
 	MemberService service;
 	
-	@ExceptionHandler({Exception.class})
-	public String errorPage() {
-		return "error/error";
-	}
+//	@ExceptionHandler({Exception.class})
+//	public String errorPage() {
+//		return "error/error";
+//	}
 	
 	@RequestMapping("/login")
 	public String login(@RequestParam Map<String, String> map, Model m, HttpSession session) {
-		//int exception = 5/0;
+		int exception = 5/0;
 		MemberDTO dto = service.login(map);
 		//System.out.println("로그인" + dto);
 		String nextPage="";

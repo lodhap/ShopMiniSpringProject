@@ -17,10 +17,10 @@ public class MainController {
 	@Autowired
 	GoodsService service;
 	
-	@ExceptionHandler({Exception.class})
-	public String errorPage() {
-		return "error/error";
-	}
+//	@ExceptionHandler({Exception.class})
+//	public String errorPage() {
+//		return "error/error";
+//	}
 	
 	@RequestMapping("/")
 	public ModelAndView main() throws Exception{

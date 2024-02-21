@@ -11,7 +11,8 @@
 <%
 	out.print(exception);
 %>
-<a href="http://localhost:8092//app/">메인화면으로</a>
+<br>
+<a href="http://localhost:8092//app/">메인화면으로</a><br>
 <a href="/">메인화면으로2</a>
 </body>
 </html>
