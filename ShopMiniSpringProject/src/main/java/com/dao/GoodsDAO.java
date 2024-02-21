@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dto.CartDTO;
 import com.dto.GoodsDTO;
+import com.dto.OrderDTO;
 
 @Repository
 public class GoodsDAO {
@@ -50,5 +51,9 @@ public class GoodsDAO {
 	public CartDTO cartByNum(String num) {
 		CartDTO cart = session.selectOne("cartByNum", num);
 		return cart;
+	}
+
+	public void orderDone(OrderDTO order) {
+		session.insert("orderDone", order);
 	}
 }

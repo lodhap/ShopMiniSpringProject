@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.dto.CartDTO;
 import com.dto.GoodsDTO;
 import com.dto.MemberDTO;
+import com.dto.OrderDTO;
 import com.service.GoodsService;
 import com.service.MemberService;
 
@@ -121,5 +122,21 @@ public class GoodsController {
 		xxx.addFlashAttribute("member", member);
 		
 		return "redirect:../orderConfirm";
+	}
+	
+	@RequestMapping("/loginCheck/orderDone")
+	public String orderDone(OrderDTO order, String orderNum, HttpSession session, RedirectAttributes xxx) {
+		System.out.println(order + "\t" + orderNum);
+		// num, userid, oderdate
+		// orderdto 등록
+		// cart 삭제
+		// tx처리
+		MemberDTO login = (MemberDTO)session.getAttribute("login");
+		String userid = login.getUserid();
+		order.setUserid(userid);
+		service.orderDone(order, orderNum);
+		
+		xxx.addFlashAttribute("order", order);
+		return "redirect:../orderDone";
 	}
 }

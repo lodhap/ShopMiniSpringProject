@@ -48,15 +48,15 @@
 </script>	
 
 
-<form name="myForm" method="get" action="CartOrderDone">
-<input type="hidden" name="gCode" value="">
-<input type="hidden" name="gName" value="">
-<input type="hidden" name="gPrice" value="">
-<input type="hidden" name="gSize" value="">
-<input type="hidden" name="gColor" value="">
-<input type="hidden" name="gAmount" value="">
-<input type="hidden" name="gImage" value="">
-<input type="hidden" name="orderNum" value="">
+<form name="myForm" method="get" action="loginCheck/orderDone">
+<input type="hidden" name="gCode" value="${cart.gCode }">
+<input type="hidden" name="gName" value="${cart.gName }">
+<input type="hidden" name="gPrice" value="${cart.gPrice }">
+<input type="hidden" name="gSize" value="${cart.gSize }">
+<input type="hidden" name="gColor" value="${cart.gColor }">
+<input type="hidden" name="gAmount" value="${cart.gAmount }">
+<input type="hidden" name="gImage" value="${cart.gImage }">
+<input type="hidden" name="orderNum" value="${cart.num }"> <!--장바구니 번호, 장바구니 삭제시 사용  -->
 	<table width="80%" cellspacing="0" cellpadding="0">
 
 		<tr>
